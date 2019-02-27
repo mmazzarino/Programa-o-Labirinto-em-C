@@ -1,0 +1,992 @@
+#include<stdio.h>                        // TRABALHO FINAL DISCIPLINA: PROGRAMAÇÃO PARA ENGENHARIA 1
+#include<stdlib.h>                       // ALUNOS: MATHEUS MAZZARINO E VITOR HUGO ZANELLA
+#include<string.h>                       // OBS: O PROGRAMA FOI FEITO NO SISTEMA OPERACIONAL WINDOWS, POR TANTO,
+#include<time.h>                         //    DEVE SER RODADO NO MESMO SISTEMA OPERACIONAL PARA QUE AS
+#define N 1000                           //    FUNÇÕES PARA LIMPAR A TELA (system("cls")) E PARA LIMPAR O BUFFER (fflush(stdin))
+#define M 30                             //    FUNCIONEM CORRETAMENTE.
+
+
+typedef struct livros{                                           //DECLARAÇÃO STRUCT
+char nome[M];
+char editora[M];
+char autor[M];
+int num_paginas;
+int ano;
+float valor;
+}
+LIVROS;                                                          //A struct recebe o apelido de LIVROS
+
+void funcao_insercao (LIVROS *v){                                //FUNÇÃO INSERÇÃO
+int cont, num_registros, tempo;
+num_registros = 0;
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){                         //Loop para contar o nímero de registros
+        num_registros++;
+    }
+}
+if(num_registros == N){
+
+
+    printf(" ----------------------------------------------------------- \n"     // Erro de número máximo de registros alcançado
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         -----------------------------------               '\n"
+       "'        '                                   '              '\n"
+       "'        'ERRO: O numero maximo de registros '              '\n"
+       "'        '      foi alcancado!               '              '\n"
+       "'        '-----------------------------------'              '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+    system("pause");
+    system ("cls");                                                               //utilização da função system("cls") para limpar a tela do prompt
+
+return;
+}
+
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome do livro:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);                                                                  // Utilização da função fflush(stdin) para limpar o "ENTER" do buffer e usar a função gets
+gets(v[num_registros].nome);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome da editora:                                 '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(v[num_registros].editora);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome do autor:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(v[num_registros].autor);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o numero de paginas:                               '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%d", &v[num_registros].num_paginas);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o ano de edicao:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%d", &v[num_registros].ano);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO INSERCAO                    '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o valor do livro:                                  '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%f", &v[num_registros].valor);
+system ("cls");
+
+return;
+}
+
+void funcao_delecao_de_registros (LIVROS *v){                    //FUNÇÃO DELEÇÃO DE REGISTROS
+
+int cont, num_registros, num_busca;
+num_registros = 0;
+num_busca = 0;
+char nome_busca[M];
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){
+        num_registros++;
+    }
+}
+if(num_registros==0){
+    printf(" --------------------------------------------------- \n"
+       "'                        FUNCAO DELECAO                     '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: A estrutura de dados está vazia!  '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+       system ("cls");
+
+       return;
+
+}
+printf(" ---------------------------------------------------------- \n"
+       "'                        FUNCAO DELECAO                     '\n"
+       "'-----------------------------------------------------------'\n"
+       "'                                                           '\n"
+       "'Digite o nome do livro que deseja apagar:                  '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(nome_busca);
+system ("cls");
+
+for(cont=0; cont<num_registros; cont++){
+
+if(strcmp(v[cont].nome, nome_busca) != 0){
+    num_busca++;
+}
+if(num_busca == num_registros){
+    printf(" ----------------------------------------------------------- \n"
+       "'                        FUNCAO DELECAO                     '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: Registro de livro nao encontrado! '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+       system ("cls");
+
+       return;
+}
+    if(strcmp(v[cont].nome, nome_busca) == 0){
+            strcpy(v[cont].nome, v[num_registros-1].nome);
+            strcpy(v[cont].editora, v[num_registros-1].editora);
+            strcpy(v[cont].autor, v[num_registros-1].autor);
+            v[cont].num_paginas = v[num_registros-1].num_paginas;
+            v[cont].ano = v[num_registros-1].ano;
+            v[cont].valor = v[num_registros-1].valor;
+
+            strcpy(v[num_registros-1].nome, "\0");
+            strcpy(v[num_registros-1].editora, "\0");
+            strcpy(v[num_registros-1].autor, "\0");
+            v[num_registros-1].num_paginas = 0;
+            v[num_registros-1].ano = 0;
+            v[num_registros-1].valor = 0;
+return;
+}
+}
+}
+
+void funcao_imprime_todos(LIVROS *v){                            //FUNÇÃO IMPRIME TODOS REGISTROS
+
+int cont, num_registros;
+num_registros = 0;
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){
+        num_registros++;
+    }
+}
+for (cont = 0; cont < num_registros; cont++){
+    printf("-----------------------------------------------------------\n"
+       "NOME: %s                                                       \n"
+       "EDITORA: %s                                                    \n"
+       "AUTOR: %s                                                      \n"
+       "NUMERO DE PAGINAS: %d                                          \n"
+       "ANO DE EDICAO: %d                                             \n"
+       "VALOR: %f                                                       \n\n", v[cont].nome, v[cont].editora, v[cont].autor, v[cont].num_paginas, v[cont].ano, v[cont].valor);
+
+}
+    system("pause");
+    system ("cls");
+return;
+}
+
+void funcao_alteracao_de_registros (LIVROS *v){                  //FUNÇÃO ALTERAÇÃO DE REGISTROS
+
+int cont, num_registros, num_busca;
+num_registros = 0;
+num_busca = 0;
+char nome_busca[M];
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){
+        num_registros++;
+    }
+}
+if(num_registros==0){
+    printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: A estrutura de dados está vazia!  '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+        system ("cls");
+
+       return;
+}
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "'                                                           '\n"
+       "'Digite o nome do livro que deseja alterar:                 '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(nome_busca);
+system ("cls");
+
+for(cont=0; cont<num_registros; cont++){
+
+if(strcmp(v[cont].nome, nome_busca) != 0){
+    num_busca++;
+}
+if(num_busca == num_registros){
+    printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: Registro de livro nao encontrado! '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'-----------------------------------------------------------'\n");
+
+       system("pause");
+       system ("cls");
+
+       return;
+}
+    if(strcmp(v[cont].nome, nome_busca) == 0){
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome do livro:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(v[cont].nome);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome da editora:                                 '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(v[cont].editora);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o nome do autor:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(v[cont].autor);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o numero de paginas:                               '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%d", &v[cont].num_paginas);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o ano de edicao:                                   '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%d", &v[cont].ano);
+system ("cls");
+printf(" ----------------------------------------------------------- \n"
+       "'               FUNCAO ALTERACAO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "' Digite o valor do livro:                                  '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+scanf("%f", &v[cont].valor);
+system ("cls");
+
+return;
+}
+}
+}
+
+void funcao_ordenamento_de_registros (LIVROS *v){                //FUNÇÃO ORDENAMENTO DE REGISTROS
+
+int cont, cont2, num_registros, escolha, guarda2;
+guarda2 = 0;
+char guarda[M];
+strcpy(guarda, "\0");
+float guarda3;
+guarda3 = 0;
+num_registros = 0;
+escolha = 0;
+
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){
+        num_registros++;
+    }
+}
+if(num_registros == 0){
+    printf(" ----------------------------------------------------------- \n"
+       "'               MENU ORDENAMENTO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: A estrutura de dados está vazia!  '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+       system ("cls");
+
+return;
+}
+printf(" ----------------------------------------------------------- \n"
+       "'               MENU ORDENAMENTO DE REGISTROS               '\n"
+       "'-----------------------------------------------------------'\n"
+       "'ESCOLHA QUAL CAMPO DESEJA ORDENAR:                         '\n"
+       "'                                                           '\n"
+       "' 1 - Nome.                                                 '\n"
+       "' 2 - Ano.                                                  '\n"
+       "' 3 - Valor.                                                '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+      scanf("%d", &escolha);
+
+       system ("cls");
+switch (escolha){
+
+case 1:
+    for(cont = 0; cont < num_registros-1; cont++){
+    for(cont2 = cont+1; cont2 < num_registros; cont2++){
+
+
+        if (v[cont].nome[0] > v[cont2].nome[0]){
+
+            strcpy (guarda, v[cont].nome);
+            strcpy (v[cont].nome, v[cont2].nome);
+            strcpy (v[cont2].nome, guarda);
+
+            strcpy (guarda, v[cont].editora);
+            strcpy (v[cont].editora, v[cont2].editora);
+            strcpy (v[cont2].editora, guarda);
+
+            strcpy (guarda, v[cont].autor);
+            strcpy (v[cont].autor, v[cont2].autor);
+            strcpy (v[cont2].autor, guarda);
+
+            guarda2 = v[cont].num_paginas;
+            v[cont].num_paginas = v[cont2].num_paginas;
+            v[cont2].num_paginas = guarda2;
+
+            guarda2 = v[cont].ano;
+            v[cont].ano = v[cont2].ano;
+            v[cont2].ano = guarda2;
+
+            guarda3 = v[cont].valor;
+            v[cont].valor = v[cont2].valor;
+            v[cont2].valor = guarda3;
+        }
+    }
+    }
+
+    for(cont = 0; cont < num_registros-1; cont++){
+    for(cont2 = cont+1; cont2 < num_registros; cont2++){
+
+         if ((v[cont].nome[0] == v[cont2].nome[0]) && (v[cont].nome[1] > v[cont2].nome[1])){
+
+            strcpy (guarda, v[cont].nome);
+            strcpy (v[cont].nome, v[cont2].nome);
+            strcpy (v[cont2].nome, guarda);
+
+            strcpy (guarda, v[cont].editora);
+            strcpy (v[cont].editora, v[cont2].editora);
+            strcpy (v[cont2].editora, guarda);
+
+            strcpy (guarda, v[cont].autor);
+            strcpy (v[cont].autor, v[cont2].autor);
+            strcpy (v[cont2].autor, guarda);
+
+            guarda2 = v[cont].num_paginas;
+            v[cont].num_paginas = v[cont2].num_paginas;
+            v[cont2].num_paginas = guarda2;
+
+            guarda2 = v[cont].ano;
+            v[cont].ano = v[cont2].ano;
+            v[cont2].ano = guarda2;
+
+            guarda3 = v[cont].valor;
+            v[cont].valor = v[cont2].valor;
+            v[cont2].valor = guarda3;
+        }
+        }
+        }
+
+    break;
+case 2:
+        for(cont = 0; cont < num_registros-1; cont++){
+    for(cont2 = cont+1; cont2 < num_registros; cont2++){
+
+
+        if (v[cont].ano < v[cont2].ano){
+
+            strcpy (guarda, v[cont].nome);
+            strcpy (v[cont].nome, v[cont2].nome);
+            strcpy (v[cont2].nome, guarda);
+
+            strcpy (guarda, v[cont].editora);
+            strcpy (v[cont].editora, v[cont2].editora);
+            strcpy (v[cont2].editora, guarda);
+
+            strcpy (guarda, v[cont].autor);
+            strcpy (v[cont].autor, v[cont2].autor);
+            strcpy (v[cont2].autor, guarda);
+
+            guarda2 = v[cont].num_paginas;
+            v[cont].num_paginas = v[cont2].num_paginas;
+            v[cont2].num_paginas = guarda2;
+
+            guarda2 = v[cont].ano;
+            v[cont].ano = v[cont2].ano;
+            v[cont2].ano = guarda2;
+
+            guarda3 = v[cont].valor;
+            v[cont].valor = v[cont2].valor;
+            v[cont2].valor = guarda3;
+        }
+    }
+    }
+    break;
+case 3:
+            for(cont = 0; cont < num_registros-1; cont++){
+    for(cont2 = cont+1; cont2 < num_registros; cont2++){
+
+
+        if (v[cont].valor > v[cont2].valor){
+
+            strcpy (guarda, v[cont].nome);
+            strcpy (v[cont].nome, v[cont2].nome);
+            strcpy (v[cont2].nome, guarda);
+
+            strcpy (guarda, v[cont].editora);
+            strcpy (v[cont].editora, v[cont2].editora);
+            strcpy (v[cont2].editora, guarda);
+
+            strcpy (guarda, v[cont].autor);
+            strcpy (v[cont].autor, v[cont2].autor);
+            strcpy (v[cont2].autor, guarda);
+
+            guarda2 = v[cont].num_paginas;
+            v[cont].num_paginas = v[cont2].num_paginas;
+            v[cont2].num_paginas = guarda2;
+
+            guarda2 = v[cont].ano;
+            v[cont].ano = v[cont2].ano;
+            v[cont2].ano = guarda2;
+
+            guarda3 = v[cont].valor;
+            v[cont].valor = v[cont2].valor;
+            v[cont2].valor = guarda3;
+        }
+    }
+    }
+    break;
+    }
+return;
+}
+
+void funcao_impressao_de_registro (LIVROS *v){                   //FUNÇÃO IMPRESSÃO DE REGISTRO
+
+int cont, num_registros, num_busca;
+num_registros = 0;
+num_busca = 0;
+char nome_busca[M];
+for(cont = 0; cont < N; cont++){
+    if(strcmp(v[cont].nome, "\0") != 0){
+        num_registros++;
+    }
+}
+if(num_registros==0){
+    printf(" ----------------------------------------------------------- \n"
+       "'                  IMPRESSAO DE REGISTROS                   '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: A estrutura de dados está vazia!  '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+       system ("cls");
+
+       return;
+}
+printf(" ----------------------------------------------------------- \n"
+       "'                  IMPRESSAO DE REGISTROS                   '\n"
+       "'-----------------------------------------------------------'\n"
+       "'                                                           '\n"
+       "'DIGITE O NOME DO LIVRO QUE DESEJA IMPRIMIR REGISTROS:      '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+fflush (stdin);
+gets(nome_busca);
+system ("cls");
+
+for(cont=0; cont<num_registros; cont++){
+
+if(strcmp(v[cont].nome, nome_busca) != 0){
+    num_busca++;
+}
+if(num_busca == num_registros){
+    printf(" ----------------------------------------------------------- \n"
+       "'                  IMPRESSAO DE REGISTROS                   '\n"
+       "'-----------------------------------------------------------'\n"
+       "'         ----------------------------------------          '\n"
+       "'        '                                        '         '\n"
+       "'        'ERRO: Registro de livro nao encontrado! '         '\n"
+       "'        '                                        '         '\n"
+       "'        '----------------------------------------'         '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+       system("pause");
+       system ("cls");
+
+       return;
+}
+    if(strcmp(v[cont].nome, nome_busca) == 0){
+
+     printf("-----------------------------------------------------------\n"
+       "NOME: %s                                                       \n"
+       "EDITORA: %s                                                    \n"
+       "AUTOR: %s                                                      \n"
+       "NUMERO DE PAGINAS: %d                                          \n"
+       "ANO DE EDICAO: %d                                             \n"
+       "VALOR: %f                                                       \n\n", v[cont].nome, v[cont].editora, v[cont].autor, v[cont].num_paginas, v[cont].ano, v[cont].valor);
+}
+       system("pause");
+       system ("cls");
+}
+return;
+}
+
+
+int main(){                                                      //INT MAIN
+LIVROS vetor[N];
+int cont, escolha;
+
+for(cont=0; cont<N; cont++){
+strcpy (vetor[cont].nome, "\0");
+strcpy (vetor[cont].editora, "\0");
+strcpy (vetor[cont].editora, "\0");
+vetor[cont].num_paginas = 0;
+vetor[cont].ano = 0;
+vetor[cont].valor = 0;
+}
+
+
+strcpy(vetor[0].nome, "a nome");
+strcpy(vetor[1].nome, "b nome");
+strcpy(vetor[2].nome, "c nome");
+strcpy(vetor[3].nome, "d nome");
+strcpy(vetor[4].nome, "e nome");
+strcpy(vetor[5].nome, "f nome");
+strcpy(vetor[0].editora, "editora0");
+strcpy(vetor[1].editora, "editora1");
+strcpy(vetor[2].editora, "editora2");
+strcpy(vetor[3].editora, "editora3");
+strcpy(vetor[4].editora, "editora4");
+strcpy(vetor[5].editora, "editora5");
+strcpy(vetor[0].autor, "a utor");
+strcpy(vetor[1].autor, "b autor");
+strcpy(vetor[2].autor, "c autor");
+strcpy(vetor[3].autor, "d autor");
+strcpy(vetor[4].autor, "e autor");
+strcpy(vetor[5].autor, "f autor");
+vetor[0].num_paginas = 100;
+vetor[1].num_paginas = 200;
+vetor[2].num_paginas = 250;
+vetor[3].num_paginas = 300;
+vetor[4].num_paginas = 350;
+vetor[5].num_paginas = 400;
+vetor[0].ano = 1999;
+vetor[1].ano = 2000;
+vetor[2].ano = 2001;
+vetor[3].ano = 2002;
+vetor[4].ano = 2003;
+vetor[5].ano = 2004;
+vetor[0].valor = 99;
+vetor[1].valor = 110;
+vetor[2].valor = 115;
+vetor[3].valor = 120;
+vetor[4].valor = 300;
+vetor[5].valor = 350;
+
+
+while (1+1 == 2){
+        escolha = 0;
+printf(" ----------------------------------------------------------- \n"
+       "'                        MENU PRINCIPAL                     '\n"
+       "'-----------------------------------------------------------'\n"
+       "'SELECIONE A OPCAO QUE DESEJA REALIZAR:                     '\n"
+       "'                                                           '\n"
+       "' 1 - Insercao de novo registro.                            '\n"
+       "' 2 - Delecao de registro.                                  '\n"
+       "' 3 - Alteracao de registro.                                '\n"
+       "' 4 - Ordenamento de registro.                              '\n"
+       "' 5 - Impressao de registro.                                '\n"
+       "' 6 - Impressao de todos os registros.                      '\n"
+       "' 7 - Sair do programa.                                     '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       "'                                                           '\n"
+       " ----------------------------------------------------------- \n");
+
+    scanf("%d", &escolha);
+system ("cls");
+    switch(escolha){
+case 1:
+    funcao_insercao (vetor);
+    break;
+case 2:
+    funcao_delecao_de_registros (vetor);
+    break;
+case 3:
+    funcao_alteracao_de_registros (vetor);
+    break;
+case 4:
+    funcao_ordenamento_de_registros(vetor);
+    break;
+case 5:
+    funcao_impressao_de_registro (vetor);
+    break;
+case 6:
+    funcao_imprime_todos (vetor);
+    break;
+case 7:
+
+return 0;
+
+    break;
+
+    }
+}
+return 0;
+}
