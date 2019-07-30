@@ -1,0 +1,212 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#define N 1000
+
+typedef struct capacitores
+{
+    int codigo;
+    char tipo[20];
+    int valor;
+    float tolerancia;
+    float tensao_op;
+    int quantidade_estoque;
+}
+cap;
+
+void cadastra_cap(cap *p);
+void imprime_dados(cap *p);
+void pesquisa_por_valor(cap *p);
+void pesquisa_por_codigo(cap *p);
+void atualiza_quantidade(int a, cap *p);
+
+int main()
+{
+cap v[N];
+for(int cont = 0; cont < N; ){   //tipo um construtor
+   v[cont].codigo = 0;
+   v[cont].quantidade_estoque = 0;
+   v[cont].tensao_op = 0;
+   v[cont].tolerancia = 0;
+   v[cont].valor = 0;
+   cont++;
+}
+    int escolha1, aux1, aux2, teste = 1;
+    while(teste == 1){
+        printf(" __________________________________________________\n");
+        printf("-----------------------MENU-----------------------\n\n");
+        printf("Insira o numero correspondente a opcao desejada:  \n");
+        printf("1 - Cadastrar capacitor                           \n");
+        printf("2 - Pesquisar capacitor por valor                 \n");
+        printf("3 - Pesquisar capacitor por codigo identificador  \n");
+        printf("4 - Imprimir todos capacitores do estoque         \n");
+        printf("5 - Retirar capacitores por codigo                \n");
+        printf("6 - Repor capacitores por codigo                  \n");
+        printf("7 - Sair                                          \n");
+        scanf("%d", &escolha1);
+        system("cls");
+        switch(escolha1){
+            case (1):{cadastra_cap(&v[0]); break;}
+            case (2):{pesquisa_por_valor(&v[0]);
+                      system("pause");
+                      system("cls");
+                      break;}
+            case (3):{pesquisa_por_codigo(&v[0]);
+                      system("pause");
+                      system("cls");
+                      break;}
+            case (4):{for (int cont = 0; cont < N; cont++){
+                     if(v[cont].codigo != 0){
+                        imprime_dados(&v[cont]);
+                        }
+                     if(v[cont].codigo == 0){
+                         system("pause");
+                         system("cls");
+                         break;
+                     }
+            }
+            break;}
+            case (5):{atualiza_quantidade(1, &v[0]);
+                      break;}
+            case (6):{atualiza_quantidade(2, &v[0]);
+                     break;}
+            case (7):{
+                printf("BYE BYE!!\n");
+                return 0;
+
+            }
+            default: break;
+            }
+        }
+    }
+            void cadastra_cap(cap *p){
+                int cont, escolha2;
+                for(cont = 0; cont < N; cont ++){
+                    if(p->codigo == 0){
+                        p->codigo = cont + 1;
+                        printf("Escolha o tipo do capacitor\n");
+                        printf("1 - Eletrolitico\n");
+                        printf("2 - Poliester\n");
+                        printf("3 - Ceramico\n");
+                        printf("4 - Tantalo\n");
+                        printf("5 - Mica\n");
+                        printf("6 - SMD\n");
+                        printf("7 - Variavel\n");
+                        printf("8 - Oleo e papel\n");
+                        scanf("%d", &escolha2);
+                        system("cls");
+                        switch(escolha2){
+                            case 1: strcpy(p->tipo, "Eletrolitico");break;
+                            case 2: strcpy(p->tipo, "Poliester");break;
+                            case 3: strcpy(p->tipo, "Ceramico");break;
+                            case 4: strcpy(p->tipo, "Tantalo");break;
+                            case 5: strcpy(p->tipo, "Mica");break;
+                            case 6: strcpy(p->tipo, "SMD");break;
+                            case 7: strcpy(p->tipo, "Variavel");break;
+                            case 8: strcpy(p->tipo, "Oleo e papel");break;
+                        }
+                        printf("Insira o valor do capacitor:\n");
+                            scanf("%d", &p->valor);
+                            system("cls");
+                        printf("Insira a tolerancia do capacitor:\n");
+                            scanf("%f", &p->tolerancia);
+                            system("cls");
+                        printf("Insira a tensao de operacao:\n");
+                            scanf("%f", &p->tensao_op);
+                            system("cls");
+                        printf("Insira a quantidade de estoque:\n");
+                            scanf("%d", &p->quantidade_estoque);
+                            system("cls");
+                        printf("Capacitor cadastrado corretamente!!\n\n");
+                        return;
+                    }
+                    else{
+                        p++;
+                    }
+                }
+            }
+            void imprime_dados(cap *p){
+                printf("Codigo : %d  Tipo: %s Valor: %d Tolerancia: %.2f Tensao de operacao: %.2f Quantidade em estoque: %d\n",
+                        p->codigo, p->tipo, p->valor, p->tolerancia, p->tensao_op, p->quantidade_estoque);
+            }
+            void pesquisa_por_valor(cap *p){
+                int aux3, aux4, cont;
+                aux3 = 0;
+                printf("Digite o valor do capacitor que deseja pesquisar:\n");
+                scanf("%d", &aux4);
+                system("cls");
+                for (cont = 0; cont < N; cont++){
+                    if((p->codigo != 0) && (p->valor == aux4)){
+                        imprime_dados(p);
+                        aux3++;
+                        p++;
+                     }
+                    else if((p->codigo != 0) && (p->valor != aux4)){
+                        p++;
+                    }
+                    else if((p->codigo == 0) && (aux3 == 0)){
+                        printf("Nao existem capacitores com este valor!\n");
+                        return;
+                    }
+                }
+            }
+            void pesquisa_por_codigo(cap *p){
+                int aux4, cont, aux3;
+                aux3 = 0;
+                printf("Digite o codigo do capacitor que deseja pesquisar:\n");
+                scanf("%d", &aux4);
+                system("cls");
+                for (cont = 0; cont < N; cont++){
+                    if((p->codigo != 0) && (p->codigo == aux4)){
+                        imprime_dados(p);
+                        aux3++;
+                        p++;
+                    }
+                    else if((p->codigo != 0) && (p->codigo != aux4)){
+                        p++;
+                    }
+                    else if((p->codigo == 0) && (aux3 == 0)){
+                        printf("Nao existem capacitores com este codigo!\n");
+                        return;
+                    }
+                }
+            }
+            void atualiza_quantidade(int a, cap *p){
+                int aux1, aux2;
+                if(a == 1){
+                    printf("Insira o codigo do capacitor que deseja retirar:\n");
+                    scanf("%d", &aux1);
+                    system("cls");
+                }
+                else if(a == 2){
+                    printf("Insira o codigo do capacitor que deseja repor:\n");
+                    scanf("%d", &aux1);
+                    system("cls");
+                }
+                for(int cont = 0; cont < N; cont++){
+                    if((p->codigo == aux1) && (a == 1)){
+                        printf("Insira a quantidade de capacitores que deseja retirar:\n");
+                        scanf("%d", &aux2);
+                        system("cls");
+                        p->quantidade_estoque -= aux2;
+                        return;
+                    }
+                    else if((p->codigo == aux1) && (a == 2)){
+                        printf("Insira a quantidade de capacitores que deseja repor:\n");
+                        scanf("%d", &aux2);
+                        system("cls");
+                        p->quantidade_estoque += aux2;
+                        return;
+                    }
+                    else if((p->codigo != aux1) && (p->codigo != 0)){
+                        p++;
+                    }
+                    else if(p->codigo == 0){
+                        printf("Este codigo nao existe!\n");
+                        system("pause");
+                        system("cls");
+                        return;
+                    }
+                }
+            }
