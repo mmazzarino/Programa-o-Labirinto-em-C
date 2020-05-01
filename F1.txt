@@ -1,0 +1,252 @@
+// INTEGRAÃ‡ÃƒO HARDWARE SOFTWARE III
+// TRABALHO DE REVISÃƒO
+// INTEGRANTES DO GRUPO:
+// <FIGURINHA 1>
+// <FIGURINHA 2>
+// ULTIMA REVISÃƒO: 11/04
+// NÃ£o esqueÃ§a de copiar data.ihs para a pasta do programa
+#include <stdio.h>
+#include <string.h>
+
+// NÃƒO ALTERE ESTA ESTRUTURA!!
+struct piloto
+{
+    char nome[30];  // nome do animal
+    int pontos[17]; // pontuaÃ§Ã£o em cada corrida
+};
+
+struct contagens
+{
+    char nome[30];
+    int numVit;
+    int numPod;
+    int numCorPont;
+    int pontTotal;
+};
+
+/*
+NÃºmero de VitÃ³rias;
+b. NÃºmero de PÃ³dios;
+c. NÃºmero de Corridas Pontuadas;*/
+
+int le_arquivo(struct piloto *);
+void contaNumVit(struct contagens *, struct piloto *);
+void contaNumPod(struct contagens *, struct piloto *);
+void contaNumCorPont(struct contagens *, struct piloto *);
+void contaPontTotal(struct contagens *, struct piloto *);
+void  bubbleSort(struct contagens *, int);
+
+int main()
+{
+    int escolha, escolha1;
+
+    struct piloto grid[25]; // NÃ£o altere
+    struct contagens gridCont[25];
+
+    if( !le_arquivo(grid) ) // Testa e efetua leitura de grid[]
+    {
+        printf("Problema...\n");
+        return 0;           // Sai se ocorrer um problema
+    }
+
+
+    // Se chegou aqui, o vetor grid contem a lista de pilotos em ordem
+    // alfabÃ©tica e suas pontuaÃ§Ãµes no campeonato
+    // A partir desse ponto, vocÃª pode manipular grid e o cÃ³digo a vontade
+
+    // Imprimindo grid para testar se o arquivo foi lido corretamente
+
+
+    contaNumVit(gridCont, grid);
+    contaNumPod(gridCont, grid);
+    contaNumCorPont(gridCont, grid);
+    contaPontTotal(gridCont, grid);
+
+    while(1 == 1){
+
+        printf("            MENU - Escolha o numero da opcao         \n");
+        printf("1. Apresentar a classificacao final do campeonato    \n");
+        printf("2. Listar em ordem decrescente os pilotos por:       \n");
+        printf("3. Sair do programa       \n");
+
+        scanf("%d", &escolha);
+        system("cls");
+
+        switch(escolha){
+            case(1): { bubbleSort(gridCont, 4);
+                       printf("%20s %20s \n", "NOME PILOTO", "PONTUACAO TOTAL");
+                       for (int aux1 = 0; aux1 < 9; aux1++){
+                           printf("%20s %3d \n", gridCont[aux1].nome, gridCont[aux1].pontTotal);
+                       }
+                       system("pause");
+                       system("cls");
+                       break;
+                       }
+
+            case(2): { printf("Escolha a ordenacao             \n");
+                       printf("1. Numero de Vitorias           \n");
+                       printf("2. Numero de PÃ³dios             \n");
+                       printf("3. Numero de Corridas Pontuadas \n");
+
+                       scanf("%d", &escolha1);
+
+                       switch(escolha1){
+                           case(1): { bubbleSort(gridCont, 1);
+                                      printf("%20s %20s \n", "NOME PILOTO", "NUMERO DE VITORIAS");
+                                      for (int aux1 = 0; aux1 < 9; aux1++){
+                                          printf("%20s %3d \n", gridCont[aux1].nome, gridCont[aux1].numVit);
+                                      }
+                                      system("pause");
+                                      system("cls");
+                                      break;
+                                      }
+
+
+                           case(2): { bubbleSort(gridCont, 2);
+                                      printf("%20s %20s \n", "NOME PILOTO", "NUMERO DE PODIOS");
+                                      for (int aux1 = 0; aux1 < 9; aux1++){
+                                          printf("%20s %3d \n", gridCont[aux1].nome, gridCont[aux1].numPod);
+                                      }
+                                      system("pause");
+                                      system("cls");
+                                      break;
+                                      }
+
+
+                           case(3): { bubbleSort(gridCont, 3);
+                                      printf("%20s %30s \n", "NOME PILOTO", "NUMERO DE CORRIDAS PONTUADAS");
+                                      for (int aux1 = 0; aux1 < 9; aux1++){
+                                          printf("%20s %3d \n", gridCont[aux1].nome, gridCont[aux1].numCorPont);
+                                      }
+                                      system("pause");
+                                      system("cls");
+                                      break;
+                                      }
+
+
+                           default: { printf("Opcao invalida \n"); break; }
+                       }
+
+                       break;}
+
+            case(3): {return -0;}
+
+            default: { printf("Opcao invalida \n");} break;
+
+        }
+    }
+
+    return 0;
+}
+
+int le_arquivo(struct piloto *ptr)
+{
+        FILE *p;
+        p = fopen("data.ihs", "rb");
+        if( !p )
+        {
+            printf("Problema ao abrir o arquivo data.ihs\n");
+            printf("Verifique se ele estÃ¡ na pasta ou desmarque a\n");
+            printf("opcao shadow build!\n");
+            return 0;
+        }
+        fread((char *)ptr, 1, 25*(sizeof (struct piloto)), p);
+        return 1;
+}
+
+void contaNumVit(struct contagens *ptr, struct piloto *ptr1){
+    for (int aux1 = 0; aux1 < 25; aux1++){
+        ptr[aux1].numVit = 0;
+        for (int aux2 = 0; aux2 < 17; aux2++){
+            if(ptr1[aux1].pontos[aux2] == 10){
+                ptr[aux1].numVit ++;
+        }
+    }
+}
+}
+
+void contaNumPod(struct contagens *ptr, struct piloto *ptr1){
+    for (int aux1 = 0; aux1 < 25; aux1++){
+        ptr[aux1].numPod = 0;
+        for (int aux2 = 0; aux2 < 17; aux2++){
+            if((ptr1[aux1].pontos[aux2] == 10) || (ptr1[aux1].pontos[aux2] == 8) || (ptr1[aux1].pontos[aux2] == 6)){
+                ptr[aux1].numPod ++;
+        }
+    }
+}
+}
+
+void contaNumCorPont(struct contagens *ptr, struct piloto *ptr1){
+    for (int aux1 = 0; aux1 < 25; aux1++){
+        ptr[aux1].numCorPont = 0;
+        for (int aux2 = 0; aux2 < 17; aux2++){
+            if(ptr1[aux1].pontos[aux2] != 0){
+                ptr[aux1].numCorPont ++;
+        }
+    }
+}
+}
+
+void contaPontTotal(struct contagens *ptr, struct piloto *ptr1){
+    for (int aux1 = 0; aux1 < 25; aux1++){
+        strcpy(ptr[aux1].nome, ptr1[aux1].nome);
+        ptr[aux1].pontTotal = 0;
+        for (int aux2 = 0; aux2 < 17; aux2++){
+            ptr[aux1].pontTotal += ptr1[aux1].pontos[aux2];
+        }
+    }
+}
+
+void bubbleSort(struct contagens *ptr, int aux){
+    struct contagens auxGuardaVlr;
+    switch(aux){
+        case(1): { for(int cont1 = 0; cont1 < 25 - 1; cont1++){ //ordena pelo nÃºmero de vitÃ³rias
+                      for(int cont2 = cont1 + 1; cont2 < 25; cont2++){
+                          if(ptr[cont1].pontTotal < ptr[cont2].pontTotal){
+                              auxGuardaVlr = ptr[cont1];
+                              ptr[cont1] = ptr[cont2];
+                              ptr[cont2] = auxGuardaVlr;
+                          }
+                      }
+                  }; break; }
+
+        case(2): { for(int cont1 = 0; cont1 < 25 - 1; cont1++){ //ordena pelo nÃºmero de pÃ³dios
+            for(int cont2 = cont1 + 1; cont2 < 25; cont2++){
+                if(ptr[cont1].numPod < ptr[cont2].numPod){
+                    auxGuardaVlr = ptr[cont1];
+                    ptr[cont1] = ptr[cont2];
+                    ptr[cont2] = auxGuardaVlr;
+                }
+            }
+        }; break; }
+
+        case(3): { for(int cont1 = 0; cont1 < 25 - 1; cont1++){ //ordena pelo nÃºmero de corridas pontuadas
+            for(int cont2 = cont1 + 1; cont2 < 25; cont2++){
+                if(ptr[cont1].numCorPont < ptr[cont2].numCorPont){
+                    auxGuardaVlr = ptr[cont1];
+                    ptr[cont1] = ptr[cont2];
+                    ptr[cont2] = auxGuardaVlr;
+                }
+            }
+        }; break; }
+
+    case(4): { for(int cont1 = 0; cont1 < 25 - 1; cont1++){ //ordena pelo nÃºmero de pontos totais
+        for(int cont2 = cont1 + 1; cont2 < 25; cont2++){
+            if(ptr[cont1].pontTotal < ptr[cont2].pontTotal){
+                auxGuardaVlr = ptr[cont1];
+                ptr[cont1] = ptr[cont2];
+                ptr[cont2] = auxGuardaVlr;
+            }
+            else if(ptr[cont1].pontTotal == ptr[cont2].pontTotal){
+                if(ptr[cont1].numVit < ptr[cont2].numVit){
+                    auxGuardaVlr = ptr[cont1];
+                    ptr[cont1] = ptr[cont2];
+                    ptr[cont2] = auxGuardaVlr;
+                }
+            }
+        }
+    }; break; }
+
+    default: break;
+    }
+}
